@@ -22,12 +22,12 @@ To help you get started we have set up an application that lists some of the tra
 1. Clone repository
 2. Setup a new private repository with the source code
 3. Create a new python virtual environment with Python 3.6 or higher
-4. Go to the `service` folder and run `pip install -r requirements.txt`
-5. Go to the `client` folder and run `yarn start`. If you do not have yarn installed, please install it now.
-6. If everything goes well, you can check the backend API at `localhost:8000` and frontend will be running at `localhost:3000`, as shown below ->
-7. <img width="604" alt="image" src="https://user-images.githubusercontent.com/16581564/171032745-71b35b23-fe6f-4e5a-bbee-87cd6161f2ec.png">
-8. Code
-9. Push your solution to a new branch and reach out to us
+4. Go to the `service` folder and run `pip install -r requirements.txt` and run the Django application (`python manage.py makemigrations` -> `python manage.py migrate` -> `python manage.py runserver`)
+6. Go to the `client` folder and run `yarn start`. If you do not have yarn installed, please install it now.
+7. If everything goes well, you can check the backend API at `localhost:8000` and frontend will be running at `localhost:3000`, as shown below ->
+8. <img width="604" alt="image" src="https://user-images.githubusercontent.com/16581564/171032745-71b35b23-fe6f-4e5a-bbee-87cd6161f2ec.png">
+9. Code
+10. Push your solution to a new branch and reach out to us
 
 
 ## Bonus Points
