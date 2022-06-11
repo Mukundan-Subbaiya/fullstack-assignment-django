@@ -9,13 +9,15 @@ import { v4 as uuidv4 } from 'uuid';
 
 import PlaylistRow from "../PlaylistRow"
 
-function PlaylistList({playlists,tracks}){
+function PlaylistList({playlists,tracks, handlePlaylistSelect}){
     const [show, setShow] = useState(false);
 
     const [playlistInfo, setPlaylistInfo] = useState({});
 
     const handleClose = () => {setPlaylistInfo([]);setShow(false);}
     const handleShow = () => {setPlaylistInfo([]);setShow(true);}
+
+    const handlePLClick = (e)=>{handlePlaylistSelect(playlists.filter(p=>p.id===e.currentTarget.id)[0])}
 
     const handleSubmit = () => {
 
@@ -76,9 +78,9 @@ function PlaylistList({playlists,tracks}){
                 </div>
                 {
                     playlists.map((playlist, ix) => (
-                        <div className="col-6 col-sm-3">
+                        <button onClick={handlePLClick} id={playlist.id} className="anti-button col-6 col-sm-3">
                             <PlaylistRow key={ix} playlist={playlist}/>
-                        </div>
+                        </button>
                     ))
                 }
             </div>
