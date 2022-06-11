@@ -67,7 +67,7 @@ function App() {
                   <PlaylistList handlePlaylistSelect={handlePlaylistSelect} playlists={playlists} tracks={tracks}></PlaylistList>
                 </div>
                 <div  className="col-5">
-                  <PlaylistInfo playlist={currentPlayList} handlePlay={handlePlay} tracks = {filterTracks()}></PlaylistInfo>
+                  <PlaylistInfo allTracks={tracks} playlist={currentPlayList} handlePlay={handlePlay} tracks = {filterTracks()}></PlaylistInfo>
                 </div>
               </div>
               

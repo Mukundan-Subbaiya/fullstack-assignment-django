@@ -10,9 +10,10 @@ import $ from 'jquery';
 import Popper from 'popper.js';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPencil, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faPlus)
+library.add(faPencil)
 
 ReactDOM.render(
   <React.StrictMode>

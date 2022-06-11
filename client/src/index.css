@@ -98,3 +98,16 @@ code {
 	cursor: pointer;
 	outline: inherit;
 }
+
+
+
+.pencil{
+  border-radius: 10px;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.pencil:hover{
+  background-color: white;
+  color: black;
+}

@@ -31,7 +31,6 @@ function PlaylistList({playlists,tracks, handlePlaylistSelect}){
             }
         })
         playlistInfo.tracks =tmp;
-        console.log(playlistInfo);
 
         const requestOptions = {
             method: 'POST',
@@ -40,7 +39,7 @@ function PlaylistList({playlists,tracks, handlePlaylistSelect}){
             mode: "cors"
         };
         fetch("http://localhost:8000/playlists/", requestOptions)
-        .then(response => console.log(response.json()));
+        .then(response => {window.location.reload()});
         setPlaylistInfo([]);setShow(false);
     }
 
@@ -78,7 +77,7 @@ function PlaylistList({playlists,tracks, handlePlaylistSelect}){
                 </div>
                 {
                     playlists.map((playlist, ix) => (
-                        <button onClick={handlePLClick} id={playlist.id} className="anti-button col-6 col-sm-3">
+                        <button onClick={handlePLClick} id={playlist.id} className="anti-button pt-5 col-6 col-sm-3">
                             <PlaylistRow key={ix} playlist={playlist}/>
                         </button>
                     ))
