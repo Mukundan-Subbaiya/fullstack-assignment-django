@@ -24,6 +24,11 @@
   text-decoration: none;
   font-size: 1.25rem;
   padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+.menu li a:hover{
+  color: white;
 }
 
 .menu li a.active {
