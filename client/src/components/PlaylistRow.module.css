@@ -1,0 +1,18 @@
+.plRow {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  border-bottom: 1px solid #333;
+}
+
+.plRow:last-child {
+  border-bottom: none;
+}
+
+.plTitle {
+  font-weight: 600;
+}
+
+.plCount {
+  color: #767676;
+}

@@ -49,15 +49,33 @@
 }
 
 body {
-  margin: 0;
-  font-family: 'Epidemic', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #000;
-  color: #fff;
+  margin: 0 !important;
+  font-family: 'Epidemic', sans-serif!important;
+  -webkit-font-smoothing: antialiased!important;
+  -moz-osx-font-smoothing: grayscale!important;
+  background-color: #000!important;
+  color: #fff!important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.multi-select{
+  min-height: 300px;
+  max-height: 300px;
+}
+
+.multi-select-item{
+  border-bottom: 1px rgb(184, 170, 170) solid;
+}
+
+.multi-select-item:last-child{
+  border-bottom: inherit;
+}
+
+.multi-select-item .active{
+  background-color: gray;
 }

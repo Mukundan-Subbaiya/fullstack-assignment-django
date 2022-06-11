@@ -1,0 +1,10 @@
+.createPlaylist{
+    border: 1px white dashed;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.createPlaylist:hover{
+    background-color: white;
+    color: black
+}
