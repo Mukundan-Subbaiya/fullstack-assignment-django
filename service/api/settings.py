@@ -117,3 +117,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ASSETS_BASE = "https://storage.googleapis.com/tech-coding-interview-assets/"
 DSP_BASE = "http://link.epidemicsound.com/"
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}

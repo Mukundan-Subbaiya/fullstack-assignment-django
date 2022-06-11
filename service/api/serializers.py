@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from . import models
+import uuid
 
 
 class TrackSerializer(serializers.ModelSerializer):
@@ -28,7 +29,15 @@ class TrackSerializer(serializers.ModelSerializer):
 
 
 class TrackWrapperSerializer(serializers.ModelSerializer):
-    track = TrackSerializer()
+    track = serializers.CharField(source="track.id")
+
+    def create(self,validated_data):
+        print(validated_data)
+        track_data = validated_data.pop('track')
+        wrapper = models.TrackWrapper.objects.create(**validated_data)
+        track = models.Track.objects.get(id=track_data.id)
+        wrapper.track = track
+        return wrapper
 
     class Meta:
         model = models.TrackWrapper
@@ -52,3 +61,16 @@ class PlaylistSerializer(serializers.ModelSerializer):
             "title",
             "tracks"
         ]
+
+    def create(self, validated_data):
+        print(validated_data)
+        tracks_data = validated_data.pop('tracks')
+        playlist = models.Playlist.objects.create(**validated_data)
+        i=0
+        for track_data in tracks_data:
+            print(track_data['track'])
+            track = models.Track.objects.get(id=track_data['track']['id'])
+            models.TrackWrapper.objects.create(id=track_data['id'],playlist=playlist,index=i,track=track)
+            i+=1
+        return playlist
+    # to_re

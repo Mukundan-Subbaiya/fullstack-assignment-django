@@ -1,5 +1,7 @@
 from rest_framework import permissions, viewsets
 
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin
+
 from . import models, serializers
 
 
@@ -12,4 +14,5 @@ class TrackViewSet(viewsets.ModelViewSet):
 class PlaylistViewSet(viewsets.ModelViewSet):
     queryset = models.Playlist.objects.all()
     serializer_class = serializers.PlaylistSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
+
