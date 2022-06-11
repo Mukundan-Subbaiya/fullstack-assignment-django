@@ -3,9 +3,9 @@ import styles from "./PlaylistRow.module.css";
 
 function PlaylistRow({playlist}) {
   return (
-    <div class="d-flex flex-column" className={styles.plRow}>
+    <div className={"p-4 d-flex flex-column align-items-center justify-content-center "+styles.plRow}>
       <span className={styles.plTitle}>{playlist.title}</span>
-      <span className={styles.plCount}>{playlist.tracks.length} Tracks</span>
+      <span className={styles.plCount}>{playlist.tracks.length} Track(s)</span>
     </div>
   );
 }

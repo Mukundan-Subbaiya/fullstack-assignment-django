@@ -2,6 +2,7 @@
     border: 1px white dashed;
     border-radius: 3px;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .createPlaylist:hover{

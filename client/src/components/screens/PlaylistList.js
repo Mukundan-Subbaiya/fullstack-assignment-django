@@ -5,6 +5,9 @@ import { useState } from "react";
 
 import {Modal,Button, Form} from "react-bootstrap";
 
+import { v4 as uuidv4 } from 'uuid';
+
+import PlaylistRow from "../PlaylistRow"
 
 function PlaylistList({playlists,tracks}){
     const [show, setShow] = useState(false);
@@ -14,7 +17,30 @@ function PlaylistList({playlists,tracks}){
     const handleClose = () => {setPlaylistInfo([]);setShow(false);}
     const handleShow = () => {setPlaylistInfo([]);setShow(true);}
 
-    const handleSubmit = () => {console.log(playlistInfo);setPlaylistInfo([]);setShow(false);}
+    const handleSubmit = () => {
+
+        playlistInfo.id = uuidv4();
+
+        let tmp = playlistInfo.tracks.map((t,idx)=>{
+            return {
+                id: uuidv4(),
+                track : t,
+                index: idx
+            }
+        })
+        playlistInfo.tracks =tmp;
+        console.log(playlistInfo);
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(playlistInfo),
+            mode: "cors"
+        };
+        fetch("http://localhost:8000/playlists/", requestOptions)
+        .then(response => console.log(response.json()));
+        setPlaylistInfo([]);setShow(false);
+    }
 
 
     const onInput = (e)=>{
@@ -42,7 +68,7 @@ function PlaylistList({playlists,tracks}){
     return (
         <>
             <div className="row">
-                <div onClick={handleShow}  className={"col-6 col-sm-3 d-flex "+styles.createPlaylist}>
+                <div onClick={handleShow}  className={"col-6 col-sm-3 d-flex  align-items-center justify-content-center "+styles.createPlaylist}>
                     <FontAwesomeIcon className="p-4" icon="plus" />
                     <div className="flex-grow-1 d-flex align-items-center justify-content-center">
                         <h5 className="m-0">Create New Playlist</h5>
@@ -75,7 +101,7 @@ function PlaylistList({playlists,tracks}){
                         <ul className="text-dark col-12 overflow-auto multi-select">
                                 {
                                     tracks.map((track, ix) => (
-                                        <li onClick={onInput} id={track.id} 
+                                        <li key={track.id} onClick={onInput} id={track.id} 
                                         className={"p-3 multi-select-item row "+ ((playlistInfo.tracks!=undefined && playlistInfo.tracks.indexOf(track.id)>-1)?"active":"") }>
                                             <div id={track.id}  className="col-11">{track.title}</div>
                                             <div id={track.id}  className="col-1 ">{playlistInfo.tracks!=undefined && playlistInfo.tracks.indexOf(track.id)>-1? playlistInfo.tracks.indexOf(track.id)+1:""}</div>
