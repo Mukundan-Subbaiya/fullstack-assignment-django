@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./TrackRow.module.css";
 
-function TrackRow({ track, handlePlay }) {
+function TrackRow({ index ,track, handlePlay }) {
   return (
     <div className={styles.trackRow}>
-      <button className={styles.trackPlay} onClick={() => handlePlay(track)}>
+      <button className={styles.trackPlay} onClick={() => handlePlay(index)}>
         <svg
           width="24"
           height="24"

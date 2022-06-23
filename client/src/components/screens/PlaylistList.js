@@ -69,15 +69,13 @@ function PlaylistList({playlists,tracks, handlePlaylistSelect}){
     return (
         <>
             <div className="row">
-                <div onClick={handleShow}  className={"col-6 col-sm-3 d-flex  align-items-center justify-content-center "+styles.createPlaylist}>
+                <div onClick={handleShow}  className={"p-0 m-0 col-6 col-sm-3 d-flex align-items-center justify-content-center p-3 "+styles.createPlaylist}>
                     <FontAwesomeIcon className="p-4" icon="plus" />
-                    <div className="flex-grow-1 d-flex align-items-center justify-content-center">
-                        <h5 className="m-0">Create New Playlist</h5>
-                    </div>
+                    <h5 className="m-0">New Playlist</h5>
                 </div>
                 {
                     playlists.map((playlist, ix) => (
-                        <button onClick={handlePLClick} id={playlist.id} className="anti-button pt-5 col-6 col-sm-3">
+                        <button onClick={handlePLClick} id={playlist.id} className="anti-button col-6 col-sm-3 p-2">
                             <PlaylistRow key={ix} playlist={playlist}/>
                         </button>
                     ))

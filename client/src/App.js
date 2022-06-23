@@ -45,6 +45,9 @@ function App() {
         <Router>
           <nav>
             <img src={logo} className={styles.logo} alt="Logo" />
+            <div className="pt-5 p-2">
+              <AudioPlayer trackList={tracks} currIndex={currentTrack} />
+            </div>
             <ul className={styles.menu}>
               <li>
                 <Link to="/" id="tracks" onClick={handleScreens} className={currentScreen==='tracks'?styles.active:''}>
@@ -59,10 +62,14 @@ function App() {
             </ul>
           </nav>
           <Routes>
-            <Route exact path="/" element={<TrackList tracks={tracks} handlePlay={handlePlay}></TrackList>}>  
+            <Route exact path="/" element={
+              <div className="pb-4" style={{height:"500px",overflowY:"auto"}}>
+                <TrackList tracks={tracks} handlePlay={handlePlay}></TrackList>
+              </div>
+            }>  
             </Route>
             <Route path="/playlists"  element={
-              <div className="row h-75">
+              <div className="row" style={{height:"70%"}}>
                 <div  className="col-7">
                   <PlaylistList handlePlaylistSelect={handlePlaylistSelect} playlists={playlists} tracks={tracks}></PlaylistList>
                 </div>
@@ -70,13 +77,12 @@ function App() {
                   <PlaylistInfo allTracks={tracks} playlist={currentPlayList} handlePlay={handlePlay} tracks = {filterTracks()}></PlaylistInfo>
                 </div>
               </div>
-              
             }> 
             </Route>
           </Routes>
         </Router>
       </main>
-      {currentTrack && <AudioPlayer track={currentTrack} />}
+      
     </>
   );
 }
