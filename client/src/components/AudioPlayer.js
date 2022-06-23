@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState, useEffect } from "react";
 import styles from "./AudioPlayer.module.css";
 
@@ -41,7 +42,6 @@ function AudioPlayer({ track }) {
     audioRef.current.play();
     audioRef.current.currentTime = 0;
   }, [track]);
-
   return (
     <>
       <audio src={track.audio} ref={audioRef} />
@@ -83,6 +83,10 @@ function AudioPlayer({ track }) {
             {track.main_artists.join(", ")}
           </div>
         </div>
+        <div className="d-flex align-items-center justify-content-center h-100">        
+          <img src={track.cover_art} height="80%" className="rounded"></img>
+        </div>
+        <FontAwesomeIcon icon="fa-solid fa-list" className="px-4" />
         <div className={styles.sliderContainer}>
           <input
             type="range"
