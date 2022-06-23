@@ -69,15 +69,20 @@ function PlaylistInfo({ playlist, handlePlay, tracks, allTracks }) {
 
     return (
         <>
-            <div className={"row h-100 " + styles.infoDiv}>
-                <div className="col-6 h-25 d-flex align-items-center justify-content-center">
-                    <h4>{playlist?.title}</h4>
+            <div className={"row h-100 col-12 " + styles.infoDiv}>
+                <div className="row  pt-3">
+                    <div className="col-6 d-flex align-items-center justify-content-center">
+                        <h4>{playlist?.title}</h4>
+                    </div>
+                    <div className={"col-6 px-5 d-flex flex-row-reverse align-items-center"}>
+                        <FontAwesomeIcon className="p-3 pencil" hidden={playlist===undefined} onClick={handleShow} icon="fa-solid fa-pencil" />
+                    </div>
                 </div>
-                <div className={"col-6 px-5 h-25 d-flex flex-row-reverse align-items-center"}>
-                    <FontAwesomeIcon className="p-3 pencil" hidden={playlist===undefined} onClick={handleShow} icon="fa-solid fa-pencil" />
-                </div>
-                <div className="col-12 h-75 px-5">
-                    <TrackList tracks={tracks} handlePlay={handlePlay}></TrackList>
+                
+                <div className="row">
+                    <div className="col-12 px-5 overflow-auto" style={{height:"350px"}}>
+                        <TrackList tracks={tracks} handlePlay={handlePlay}></TrackList>
+                    </div>
                 </div>
             </div>
             <Modal show={show} onHide={handleClose}>
