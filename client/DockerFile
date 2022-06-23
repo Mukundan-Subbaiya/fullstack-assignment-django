@@ -1,0 +1,19 @@
+from node:latest
+
+RUN sudo npm install -g yarnpkg
+RUN sudo npm cache clean -f
+RUN sudo npm install -g n
+RUN sudo n stable
+
+RUN npm install -g yarn
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY . /usr/src/app
+
+RUN yarn install
+
+EXPOSE 3000
+
+CMD yarn start
