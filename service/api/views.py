@@ -1,4 +1,4 @@
-from rest_framework import permissions, viewsets
+from rest_framework import permissions, viewsets, generics
 
 from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, ListModelMixin, UpdateModelMixin
 
@@ -11,7 +11,9 @@ class TrackViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
-class PlaylistViewSet(viewsets.ModelViewSet):
+class PlaylistViewSet(viewsets.ModelViewSet, generics.UpdateAPIView):
+    lookup_field = "id";
+
     queryset = models.Playlist.objects.all()
     serializer_class = serializers.PlaylistSerializer
     permission_classes = [permissions.AllowAny]

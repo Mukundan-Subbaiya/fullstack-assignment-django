@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./PlaylistInfo.module.css";
 import TrackList from "./TrackList";
 
+import { v4 as uuidv4 } from 'uuid';
 import { Modal, Button, Form } from "react-bootstrap";
 
 
@@ -23,11 +24,8 @@ function PlaylistInfo({ playlist, handlePlay, tracks, allTracks }) {
 
     const handleSubmit = () => {
 
-        playlistInfo.id = uuidv4();
-
         let tmp = playlistInfo.tracks.map((t, idx) => {
             return {
-                id: uuidv4(),
                 track: t,
                 index: idx
             }
@@ -35,13 +33,13 @@ function PlaylistInfo({ playlist, handlePlay, tracks, allTracks }) {
         playlistInfo.tracks = tmp;
 
         const requestOptions = {
-            method: 'POST',
+            method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(playlistInfo),
             mode: "cors"
         };
-        fetch("http://localhost:8000/playlists/", requestOptions)
-            .then(response => { window.location.reload() });
+        fetch("http://localhost:8000/playlists/"+playlistInfo.id+"/", requestOptions)
+            .then(response => { window.location.reload(); });
         setPlaylistInfo([]); setShow(false);
     }
 
@@ -75,8 +73,8 @@ function PlaylistInfo({ playlist, handlePlay, tracks, allTracks }) {
                 <div className="col-6 h-25 d-flex align-items-center justify-content-center">
                     <h4>{playlist?.title}</h4>
                 </div>
-                <div className="col-6 px-5 h-25 d-flex flex-row-reverse align-items-center">
-                    <FontAwesomeIcon className="p-3 pencil" onClick={handleShow} icon="fa-solid fa-pencil" />
+                <div className={"col-6 px-5 h-25 d-flex flex-row-reverse align-items-center"}>
+                    <FontAwesomeIcon className="p-3 pencil" hidden={playlist===undefined} onClick={handleShow} icon="fa-solid fa-pencil" />
                 </div>
                 <div className="col-12 h-75 px-5">
                     <TrackList tracks={tracks} handlePlay={handlePlay}></TrackList>

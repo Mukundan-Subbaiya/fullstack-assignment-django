@@ -1,3 +1,4 @@
+from functools import partial
 from rest_framework import serializers
 
 from . import models
@@ -51,7 +52,7 @@ class TrackWrapperSerializer(serializers.ModelSerializer):
 
 class PlaylistSerializer(serializers.ModelSerializer):
 
-    tracks = TrackWrapperSerializer(many=True)
+    tracks = TrackWrapperSerializer(many=True, partial= True)
 
     class Meta:
         model = models.Playlist
@@ -73,4 +74,14 @@ class PlaylistSerializer(serializers.ModelSerializer):
             models.TrackWrapper.objects.create(id=track_data['id'],playlist=playlist,index=i,track=track)
             i+=1
         return playlist
-    # to_re
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data["title"];
+        models.TrackWrapper.objects.filter(playlist=instance).delete()
+        for key in validated_data["tracks"]:
+            track = models.Track.objects.get(id=key['track']['id'])
+            models.TrackWrapper.objects.create(id=uuid.uuid4(),playlist=instance,index=key["index"],track=track)
+        instance.save()
+        return instance
+        
+        
