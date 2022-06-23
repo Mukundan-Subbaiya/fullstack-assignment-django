@@ -2,12 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef, useState, useEffect } from "react";
 import styles from "./AudioPlayer.module.css";
 
-function AudioPlayer({ trackList, currIndex }) {
+function AudioPlayer({ track }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const audioRef = useRef(null);
-
-  const track = trackList[currIndex]
 
   const handlePlay = () => {
     setIsPlaying(true);
@@ -45,7 +43,7 @@ function AudioPlayer({ trackList, currIndex }) {
     audioRef.current.currentTime = 0;
   }, [track]);
   return (
-    <div className="rounded" >
+    <div className="rounded" style={{backgroundImage:`url(${track?.cover_art})`}} >
       <audio src={track?.audio} ref={audioRef} />
       <div className={styles.audioPlayer}>
         <button
@@ -86,9 +84,9 @@ function AudioPlayer({ trackList, currIndex }) {
           </div>
         </div>
         <div className="d-flex align-items-center justify-content-center h-100">        
-          <img src={track?.cover_art} height="80%" className="rounded"></img>
+          <img src={track?.cover_art} height="80%" className="px-3 rounded"></img>
         </div>
-        <FontAwesomeIcon icon="fa-solid fa-list" className="px-4" />
+        {/* <FontAwesomeIcon icon="fa-solid fa-list" className="px-4" /> */}
         <div className={styles.sliderContainer}>
           <input
             type="range"

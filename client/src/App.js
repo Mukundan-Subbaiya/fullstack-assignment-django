@@ -12,6 +12,7 @@ import PlaylistInfo from "./components/screens/PlaylistInfo";
 function App() {
   const [tracks, setTracks] = useState([]);
   const [playlists, setPlaylists] = useState([]);
+  const [playing, setPlaying] = useState(false);
 
   const [currentTrack, setCurrentTrack] = useState();
   const [currentPlayList, setCurrentPlaylist] = useState();
@@ -46,7 +47,7 @@ function App() {
           <nav>
             <img src={logo} className={styles.logo} alt="Logo" />
             <div className="pt-5 p-2">
-              <AudioPlayer trackList={tracks} currIndex={currentTrack} />
+              <AudioPlayer track={currentTrack} />
             </div>
             <ul className={styles.menu}>
               <li>

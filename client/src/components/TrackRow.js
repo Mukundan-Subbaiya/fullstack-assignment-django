@@ -4,7 +4,7 @@ import styles from "./TrackRow.module.css";
 function TrackRow({ index ,track, handlePlay }) {
   return (
     <div className={styles.trackRow}>
-      <button className={styles.trackPlay} onClick={() => handlePlay(index)}>
+      <button className={styles.trackPlay} onClick={() => handlePlay(track)}>
         <svg
           width="24"
           height="24"
